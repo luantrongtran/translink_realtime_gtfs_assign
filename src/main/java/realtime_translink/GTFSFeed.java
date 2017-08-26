@@ -1,15 +1,13 @@
 package realtime_translink;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
 
-import com.google.protobuf.Descriptors.FieldDescriptor;
-import com.google.transit.realtime.GtfsRealtime.EntitySelector;
 import com.google.transit.realtime.GtfsRealtime.FeedEntity;
 import com.google.transit.realtime.GtfsRealtime.FeedMessage;
 import com.google.transit.realtime.GtfsRealtime.TripDescriptor;
@@ -17,9 +15,15 @@ import com.google.transit.realtime.GtfsRealtime.TripUpdate;
 
 public class GTFSFeed {
 	private static Logger log = Logger.getLogger(GTFSFeed.class);
-	private static String tracked_route = "60";
+	private static String tracked_route = "60-863";
+	private static List<String> routes ;
 
 	public static void getNewFeed() {
+		
+		routes = new ArrayList<String>();
+		routes.add("60-863");
+		routes.add("345-863");
+		
 		URL url;
 		FeedMessage feed;
 		try {
@@ -32,10 +36,10 @@ public class GTFSFeed {
 
 					String routeId = tripDescriptor.getRouteId();
 
-					System.out.println(routeId);
-					if (routeId.startsWith(tracked_route)) {
-						log.info("New trip");
-						log.info(tripUpdate);
+					//System.out.println(routeId);
+					if (routes.contains(routeId)) {
+//						log.info("New trip");
+//						log.info(tripUpdate);
 						System.out.println(tripUpdate);
 					}
 				}
