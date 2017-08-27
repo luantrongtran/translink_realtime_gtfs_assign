@@ -132,7 +132,7 @@ public class GTFSFeed {
 		tripUpdate.getStopTimeUpdateList();
 		for(StopTimeUpdate su : tripUpdate.getStopTimeUpdateList()) {
 			String suInfo = su.getStopId() + "," + su.getStopSequence() 
-			+ "," + sdf_h.format(su.getArrival().getTime()) 
+			+ "," + sdf_h.format(su.getArrival().getTime()) + ","
 			+ sdf_h.format(su.getDeparture().getTime()) + "," + su.getArrival().getDelay();
 			
 			pWriter.println(suInfo);
