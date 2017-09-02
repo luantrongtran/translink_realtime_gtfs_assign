@@ -23,6 +23,9 @@ import com.google.transit.realtime.GtfsRealtime.TripDescriptor;
 import com.google.transit.realtime.GtfsRealtime.TripUpdate;
 import com.google.transit.realtime.GtfsRealtime.TripUpdate.StopTimeUpdate;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 public class GTFSFeed {
 //	private static Logger log = Logger.getLogger(GTFSFeed.class);
 	
@@ -30,12 +33,14 @@ public class GTFSFeed {
 	private static List<String> routes ;
 	private static String selectedRoutes = "60-863, IPCA-826";
 	
-	private static String outputFolder = "output";
+	private static String outputFolder = "./output";
 	
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 	private static SimpleDateFormat sdf_h = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
 	
 	public static boolean override_file = true;
+	
+	public static String directorySeparator = "/";
 
 	public static void getNewFeed() {
 		String[] r = selectedRoutes.split(",");
@@ -89,7 +94,7 @@ public class GTFSFeed {
 	 */
 	public static void logTrip(String route_id, TripUpdate tripUpdate) throws IOException {
 		//Each route id will have a folder
-		String dirName = outputFolder + "\\" + route_id + "\\" + sdf.format(new Date()) + "\\";
+		String dirName = outputFolder + directorySeparator + route_id + directorySeparator + sdf.format(new Date()) + directorySeparator;
 		File dir = new File(dirName);
 		if(!dir.exists()) {
 			dir.mkdirs();
@@ -98,7 +103,7 @@ public class GTFSFeed {
 		TripDescriptor ts = tripUpdate.getTrip();
 		
 		//write json file
-		String jFilename = dir.getCanonicalPath() + "\\" + ts.getTripId() + ".json";
+		String jFilename = dir.getCanonicalPath() + directorySeparator + ts.getTripId() + ".json";
 		File jFile = new File (jFilename);
 		FileWriter jFwriter = new FileWriter(jFile, override_file);
 		BufferedWriter jBuf = new BufferedWriter(jFwriter);
@@ -108,7 +113,7 @@ public class GTFSFeed {
 		
 		
 		///////Write .csv file
-		String filename = dir.getCanonicalPath() + "\\" + ts.getTripId() + ".csv";
+		String filename = dir.getCanonicalPath() + directorySeparator + ts.getTripId() + ".csv";
 		File f = new File(filename);
 //		if(f.exists()) {
 //			f.createNewFile();
