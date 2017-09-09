@@ -10,12 +10,11 @@ public class GtfsService implements Job {
 
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		// TODO Auto-generated method stub
-//		System.out.println("Working");
-//		if (gtfsFeed == null) {
-//			gtfsFeed = new GtfsFeed();
-//		}
-//		gtfsFeed.getNewFeed();
-		System.out.println("s");
+		System.out.println("running");
+		if (gtfsFeed == null) {
+			gtfsFeed = new GtfsFeed();
+		}
+		gtfsFeed.getNewFeed();
 	}
 
 }
