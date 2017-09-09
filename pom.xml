@@ -5,6 +5,12 @@
 	<artifactId>realtime_translink</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<properties>
+		<org.springframework-version>4.1.4.RELEASE</org.springframework-version>
+		<org.strutsframework-version>2.3.16.2</org.strutsframework-version>
+		<org.hibernateframework-version>4.3.8.Final</org.hibernateframework-version>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.google.transit</groupId>
@@ -22,7 +28,7 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.5</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
@@ -33,6 +39,36 @@
 			<artifactId>quartz-jobs</artifactId>
 			<version>2.2.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.5.6</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.5.6</version>
+		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>realtime_translink.Main</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
