@@ -39,11 +39,11 @@ public class GtfsFeed {
 
 	private SimpleDateFormat sdf_t = new SimpleDateFormat("HH:mm:ss");
 
-	public boolean override_file = false;
+	public boolean appending_file = false;
 
 	public String directorySeparator = "/";
 
-	public boolean isSingleTripTracking = true;
+	public boolean isSingleTripTracking = false;
 	public String singleModeTripId = "";
 
 	public void getNewFeed() {
@@ -133,7 +133,7 @@ public class GtfsFeed {
 		// write json file
 		String jFilename = dir.getCanonicalPath() + directorySeparator + ts.getTripId() + ".json";
 		File jFile = new File(jFilename);
-		FileWriter jFwriter = new FileWriter(jFile, override_file);
+		FileWriter jFwriter = new FileWriter(jFile, appending_file);
 		BufferedWriter jBuf = new BufferedWriter(jFwriter);
 		PrintWriter jPWriter = new PrintWriter(jBuf);
 		jPWriter.println(tripUpdate);
@@ -170,7 +170,7 @@ public class GtfsFeed {
 			}
 		}
 
-		FileWriter fwriter = new FileWriter(filename, override_file);
+		FileWriter fwriter = new FileWriter(filename, appending_file);
 		BufferedWriter buf = new BufferedWriter(fwriter);
 		PrintWriter pWriter = new PrintWriter(buf);
 
