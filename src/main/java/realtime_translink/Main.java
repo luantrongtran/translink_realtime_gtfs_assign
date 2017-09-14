@@ -19,25 +19,25 @@ public class Main {
 			Scheduler sched = sf.getScheduler();
 
 			JobDetail job = JobBuilder.newJob(GtfsService.class).withIdentity("job1", "group1").build();
-			JobDetail job2 = JobBuilder.newJob(GtfsService.class).withIdentity("job2", "group1").build();
+//			JobDetail job2 = JobBuilder.newJob(GtfsService.class).withIdentity("job2", "group1").build();
 
 
 			Trigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger1", "group1")
-					.withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 6-10 * * ?"))
+					.withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 6-12 * * ?"))
 					
 					//every 5 seconds
 //				    .withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?"))
 					.build();
 			
-			Trigger trigger2 = TriggerBuilder.newTrigger().withIdentity("trigger2", "group1")
-					.withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 15-19 * * ?"))
+//			Trigger trigger2 = TriggerBuilder.newTrigger().withIdentity("trigger2", "group1")
+//					.withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 15-19 * * ?"))
 					
 					//every 5 seconds
 //				    .withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?"))
-					.build();
+//					.build();
 
 			sched.scheduleJob(job, trigger);
-			sched.scheduleJob(job2, trigger2);
+//			sched.scheduleJob(job2, trigger2);
 			sched.start();
 
 //			sched.addJob(job, true);

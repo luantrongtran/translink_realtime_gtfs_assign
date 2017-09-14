@@ -133,12 +133,13 @@ public class GtfsFeed {
 		// write json file
 		String jFilename = dir.getCanonicalPath() + directorySeparator + ts.getTripId() + ".json";
 		File jFile = new File(jFilename);
-		FileWriter jFwriter = new FileWriter(jFile, appending_file);
-		BufferedWriter jBuf = new BufferedWriter(jFwriter);
-		PrintWriter jPWriter = new PrintWriter(jBuf);
-		jPWriter.println(tripUpdate);
-		jPWriter.close();
-
+		if(!jFile.exists()) {
+			FileWriter jFwriter = new FileWriter(jFile, appending_file);
+			BufferedWriter jBuf = new BufferedWriter(jFwriter);
+			PrintWriter jPWriter = new PrintWriter(jBuf);
+			jPWriter.println(tripUpdate);
+			jPWriter.close();
+		}
 		/////// Write .csv file
 		String filename = dir.getCanonicalPath() + directorySeparator + ts.getTripId() + ".csv";
 
@@ -203,9 +204,9 @@ public class GtfsFeed {
 				}
 				System.out.println("***");
 				for (StopTimeUpdate su : lstStops) {
-					String suInfo = su.getStopId() + "," + su.getStopSequence() + ","
-							+ sdf_h.format(su.getArrival().getTime() * 1000) + ","
-							+ sdf_h.format(su.getDeparture().getTime() * 1000) + "," + su.getArrival().getDelay();
+					String suInfo = ts.getRouteId() + "," + su.getStopId() + "," + su.getStopSequence() + ","
+							+ sdf_h.format(su.getArrival().getTime() * 1000) + "," + su.getArrival().getDelay() + ","
+							+ sdf_h.format(su.getDeparture().getTime() * 1000) + "," + su.getDeparture().getDelay();
 					System.out.println(suInfo);
 				}
 			}
@@ -213,8 +214,8 @@ public class GtfsFeed {
 			for (int i = lstStops.size() - 1; i >= 0; i--) {
 				StopTimeUpdate su = lstStops.get(i);
 				String suInfo = su.getStopId() + "," + su.getStopSequence() + ","
-						+ sdf_h.format(su.getArrival().getTime() * 1000) + ","
-						+ sdf_h.format(su.getDeparture().getTime() * 1000) + "," + su.getArrival().getDelay();
+						+ sdf_h.format(su.getArrival().getTime() * 1000) + "," + su.getArrival().getDelay() + ","
+						+ sdf_h.format(su.getDeparture().getTime() * 1000) + "," + su.getDeparture().getDelay();
 
 				existingContent.set(bottomIndex, suInfo);
 				bottomIndex--;
@@ -229,8 +230,8 @@ public class GtfsFeed {
 		} else {
 			for (StopTimeUpdate su : tripUpdate.getStopTimeUpdateList()) {
 				String suInfo = su.getStopId() + "," + su.getStopSequence() + ","
-						+ sdf_h.format(su.getArrival().getTime() * 1000) + ","
-						+ sdf_h.format(su.getDeparture().getTime() * 1000) + "," + su.getArrival().getDelay();
+						+ sdf_h.format(su.getArrival().getTime() * 1000) + "," + su.getArrival().getDelay() + ","
+						+ sdf_h.format(su.getDeparture().getTime() * 1000) + "," + su.getDeparture().getDelay();
 
 				pWriter.println(suInfo);
 			}
