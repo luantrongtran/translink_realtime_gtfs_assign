@@ -23,7 +23,7 @@ public class Main {
 
 
 			Trigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger1", "group1")
-					.withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 6-12 * * ?"))
+					.withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 6-12,15-19 * * ?"))
 					
 					//every 5 seconds
 //				    .withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?"))
