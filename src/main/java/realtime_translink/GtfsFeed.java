@@ -32,7 +32,8 @@ public class GtfsFeed {
 	private List<String> routes;
 	private String selectedRoutes = "66-863, 345-863, 444-863";
 
-	private String outputFolder = "./output";
+//	private String outputFolder = "./output";
+	private String outputFolder = "/var/www/html/output";
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 	private SimpleDateFormat sdf_h = new SimpleDateFormat("HH:mm:ss, dd/MM/yyyy");
