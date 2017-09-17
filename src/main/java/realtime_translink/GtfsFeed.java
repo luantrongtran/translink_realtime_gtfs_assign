@@ -214,7 +214,7 @@ public class GtfsFeed {
 
 			for (int i = lstStops.size() - 1; i >= 0; i--) {
 				StopTimeUpdate su = lstStops.get(i);
-				String suInfo = su.getStopId() + "," + su.getStopSequence() + ","
+				String suInfo = ts.getRouteId() + "," + su.getStopId() + "," + su.getStopSequence() + ","
 						+ sdf_h.format(su.getArrival().getTime() * 1000) + "," + su.getArrival().getDelay() + ","
 						+ sdf_h.format(su.getDeparture().getTime() * 1000) + "," + su.getDeparture().getDelay();
 
@@ -230,7 +230,7 @@ public class GtfsFeed {
 			}
 		} else {
 			for (StopTimeUpdate su : tripUpdate.getStopTimeUpdateList()) {
-				String suInfo = su.getStopId() + "," + su.getStopSequence() + ","
+				String suInfo = ts.getRouteId() + "," + su.getStopId() + "," + su.getStopSequence() + ","
 						+ sdf_h.format(su.getArrival().getTime() * 1000) + "," + su.getArrival().getDelay() + ","
 						+ sdf_h.format(su.getDeparture().getTime() * 1000) + "," + su.getDeparture().getDelay();
 
